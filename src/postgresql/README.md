@@ -9,6 +9,7 @@ postgresql:
   passwd: rootpass
   port: 5432
   db: openpai
+  max-conn: 1000
 ``` 
 
 One can override these settings by editing `services-configuration.yaml` .

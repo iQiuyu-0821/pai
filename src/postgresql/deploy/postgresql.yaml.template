@@ -43,7 +43,11 @@ spec:
           value: {{ cluster_cfg["postgresql"]["db"] }}
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
-        args: ['-c', 'port={{- cluster_cfg["postgresql"]["port"] }}']
+        args:
+          - '-c'
+          - 'port={{- cluster_cfg["postgresql"]["port"] }}'
+          - '-c'
+          - 'max_connection={{- cluster_cfg["postgresql"]["max-conn"] }}'
         volumeMounts:
         - name: internal-data-dir
           mountPath: /var/lib/postgresql/data/

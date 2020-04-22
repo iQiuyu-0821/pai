@@ -22,3 +22,4 @@ user: root
 passwd: rootpass
 db: openpai
 port: 5432
+max-conn: 1000
