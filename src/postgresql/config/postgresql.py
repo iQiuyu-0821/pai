@@ -41,8 +41,9 @@ class Postgresql(object):
             machine_list = self.cluster_conf['machine-list']
             if len([host for host in machine_list if host.get('pai-master') == 'true']) < 1:
                 return False, '"pai-master=true" machine is required to deploy the postgresql service'
-            if len([host for host in machine_list if host.get('pai-worker') == 'true']) > self.service_conf["max-conn"]:
-                return False, 'The worker number exceeds max connection limit. Please set a higher connection limit.'
+            # every worker uses one thread, and rest-server uses 10 threads
+            if len([host for host in machine_list if host.get('pai-worker') == 'true']) + 10 > self.service_conf["max-conn"]:
+                return False, 'Please set a higher connection limit for postgresql.'
         return True, None
 
     def run(self):
