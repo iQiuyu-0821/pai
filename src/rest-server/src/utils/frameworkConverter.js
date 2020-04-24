@@ -199,6 +199,7 @@ const generateExitSpec = (code) => {
 };
 
 const convertToJobAttempt = async (framework) => {
+  console.log(framework)
   const completionStatus = framework.status.attemptStatus.completionStatus;
   const jobName = decodeName(
     framework.metadata.name,
